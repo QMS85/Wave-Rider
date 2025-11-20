@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <title>Wave Rider</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Phaser 3 from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+  <div id="game-root">
+    <div id="hud">
+      <div id="score">Score: <span id="score-val">0</span></div>
+      <div id="timer">Time: <span id="time-val">60</span></div>
+      <div id="lives">Lives: <span id="lives-val">3</span></div>
+    </div>
+
+    <div id="controls">
+      <button id="left-btn" class="touch-btn" aria-label="Left">◀</button>
+      <button id="jump-btn" class="touch-btn" aria-label="Jump">▲</button>
+      <button id="right-btn" class="touch-btn" aria-label="Right">▶</button>
+    </div>
+
+    <div id="menu">
+      <h1>Wave Rider</h1>
+      <p class="subtitle">Ride the waves. Collect shells. Avoid whirlpools.</p>
+      <div class="menu-row">
+        <button id="btn-start" class="menu-btn">Start Endless</button>
+        <button id="btn-time" class="menu-btn">Time Attack</button>
+      </div>
+      <div class="menu-row">
+        <button id="btn-credits" class="menu-btn">How to play</button>
+        <button id="btn-sound" class="menu-btn">Toggle Sound</button>
+      </div>
+      <p class="small">Controls: Arrow keys / A D / Touch / Tilt</p>
+    </div>
+
+    <canvas id="game-canvas"></canvas>
+
+    <div id="overlay" class="hidden">
+      <div id="overlay-card">
+        <h2 id="overlay-title"></h2>
+        <p id="overlay-body"></p>
+        <div class="menu-row">
+          <button id="overlay-restart" class="menu-btn">Restart</button>
+          <button id="overlay-back" class="menu-btn">Main Menu</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/main.js"></script>
+</body>
+  </html>
+      
