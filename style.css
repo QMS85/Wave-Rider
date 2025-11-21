@@ -1,0 +1,164 @@
+:root{
+  --bg: linear-gradient(#8fd3ff, #1e90ff);
+  --panel: rgba(255,255,255,0.85);
+  --accent: #ffdd57;
+  --accent-2: #00ffd4;
+  --text-dark: #063244;
+  --glass: rgba(255,255,255,0.12);
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text-dark);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#game-root{
+  height:100%;
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Canvas fills but keeps aspect ratio using object-fit */
+/* Updated: position canvas absolutely and ensure it's behind DOM UI */
+#game-canvas{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  display:block;
+  background: transparent;
+  z-index: 0;        /* explicitly below UI */
+  touch-action: none; /* prevent default touch gestures on the canvas */
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* HUD */
+#hud{
+  position:absolute;
+  top:10px;
+  left:10px;
+  right:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  pointer-events:none;
+  z-index:30;
+}
+#hud > div{
+  background:var(--glass);
+  padding:8px 12px;
+  border-radius:12px;
+  font-weight:600;
+  backdrop-filter: blur(6px);
+}
+
+/* Controls (touch) */
+#controls{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:12px;
+  z-index:30;
+  pointer-events:auto;
+}
+.touch-btn{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(180deg,#ffffffaa,#00000011);
+  font-size:22px;
+  font-weight:700;
+  color:var(--text-dark);
+  box-shadow:0 6px 18px rgba(0,0,0,0.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  /* improved touch behavior */
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hidden{display:none;}
+
+/* Menu overlay */
+#menu{
+  position:absolute;
+  z-index:50;
+  width:min(560px,90%);
+  background:var(--panel);
+  padding:20px;
+  border-radius:14px;
+  text-align:center;
+  box-shadow:0 20px 50px rgba(2,10,40,0.28);
+  margin:auto;
+}
+#menu h1{
+  margin:6px 0 4px;
+  font-size:30px;
+}
+#menu .subtitle{
+  margin-top:0;
+  color:#063244;
+  opacity:0.9;
+}
+.menu-row{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin:12px 0;
+}
+.menu-btn{
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  background:linear-gradient(180deg,var(--accent),#ffb84d);
+  color:#002b3a;
+  font-weight:700;
+  min-width:120px;
+  cursor:pointer;
+}
+
+/* Overlay card for end screen */
+#overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(rgba(2,6,20,0.38), rgba(2,6,20,0.6));
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+#overlay-card{
+  background: white;
+  padding:18px;
+  border-radius:12px;
+  min-width:260px;
+  width:min(560px,90%);
+  text-align:center;
+}
+
+/* Responsiveness */
+@media (max-width:720px){
+  #hud{top:6px; left:6px; right:6px;}
+  .touch-btn{width:56px;height:56px;font-size:18px;}
+  #menu{padding:14px;}
+}
+@media (orientation:landscape) and (max-height:500px){
+  #controls{bottom:10px;}
+  #hud{top:6px;}
+  }
